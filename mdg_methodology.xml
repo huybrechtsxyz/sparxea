@@ -8,17 +8,21 @@
 		notes="Create analysis documentation according to the end-to-end methodology using Sparx Systems Enterprise Architect. Released for Enterprise Architect 14 using ArchiMate 3.2, BMPN 2.0 and UML 2.5."
 		infoURI="github.com/huybrechtsxyz/sparxea"
 		supportURI="github.com/huybrechtsxyz/sparxea/issues"/>
-    
-    <ModelSearches>
-      <Search Name="Find Orphans" GUID="{02E5BA47-E1EE-4c3a-8620-CF9231470002}" PkgGUID="-1" Type="0" LnksToObj="0" CustomSearch="1" AddinAndMethodName="">
-        <SrchOn>
-          <RootTable
-            Filter="select distinct o.ea_guid as CLASSGUID,o.Object_Type as CLASSTYPE,o.Name as Name, o.Stereotype,&#xA;package.name as PackageName ,package_p1.name as PackageLevel1,package_p2.name as PackageLevel2 ,package_p3.name as PackageLevel3, o.Author as Author &#xA;from ((((((((((((((((( t_object o&#xA;left join t_diagramobjects dob on dob.[Object_ID] = o.[Object_ID])&#xA;left join t_object inst on inst.[Classifier] = o.[Object_ID])&#xA;left join t_objectproperties otv on otv.VALUE = o.[ea_guid])&#xA;left join t_connectortag ctv on ctv.VALUE = o.[ea_guid])&#xA;left join t_attributetag atv on atv.VALUE = o.[ea_guid])&#xA;left join t_operationtag optv on optv.VALUE = o.[ea_guid])&#xA;left join t_object u on u.Pdata1 = o.ea_guid)&#xA;left join t_connector cs on cs.Start_Object_ID = o.Object_ID)&#xA;left join t_connector ce on ce.End_Object_ID = o.Object_ID)&#xA;left join t_attribute att on att.Classifier like o.Object_ID)&#xA;left join t_operation op on op.Classifier like o.Object_ID)&#xA;left join t_operationparams opp on opp.Classifier like o.Object_ID)&#xA;left join t_object owned on owned.ParentID = o.Object_ID)&#xA;inner join t_package package on o.package_id = package.package_id) &#xA;left join t_package package_p1 on package_p1.package_id = package.parent_id) &#xA;left join t_package package_p2 on package_p2.package_id = package_p1.parent_id) &#xA;left join t_package package_p3 on package_p3.package_id = package_p2.parent_id) &#xA;where&#xA;o.Package_ID in (#Branch#)&#xA;and (o.name is null or o.Name like '#WC#&lt;Search Term&gt;#WC#')&#xA;and o.Object_Type not in ('Package')&#xA;and (o.Stereotype is null or o.Stereotype not in ('model document'))&#xA;and dob.Object_ID is null&#xA;and inst.Object_ID is null&#xA;and otv.VALUE is null&#xA;and ctv.Value is null&#xA;and atv.Value is null&#xA;and optv.Value is null&#xA;and u.Object_ID is null&#xA;and cs.Start_Object_ID is null&#xA;and ce.End_Object_ID is null&#xA;and att.Classifier is null&#xA;and op.Classifier is null&#xA;and opp.Classifier is null&#xA;and owned.Object_ID is null" Type="-1">
-            <TableName Display="Custom SQL Search" Name=""/>
-            <TableHierarchy Display="" Hierarchy=""/>
-          </RootTable>
-        </SrchOn>
-        <LnksTo/>
-        </Search>
-      </ModelSearches>
+  <ModelTemplates>
+		<!-- 29 = Use Case, 30 = Dynamic; 31 = Class; 32 = Component; 33 = Deployment; 34 = Simple -->
+		<Model name="Add Group Use Case" description="Add a new group use case to your model. This pattern contains a single package with a use case and actity for you to model. Select the package in the project browser before selecting this pattern. Creation of use cases is recommended." location="p_GroupUseCase.xml" default="yes" icon="32" filter="Use Case"/>
+    <Model name="Add Primary Use Case" description="Add a new primary use case to your model. This pattern contains a single package with a use case and actity for you to model. Select the package in the project browser before selecting this pattern. Creation of use cases is recommended." location="p_PrimaryUseCase.xml" default="yes" icon="32" filter="Use Case"/>
+	</ModelTemplates>
+  <ModelSearches>
+    <Search Name="Find Orphans" GUID="{02E5BA47-E1EE-4c3a-8620-CF9231470002}" PkgGUID="-1" Type="0" LnksToObj="0" CustomSearch="1" AddinAndMethodName="">
+      <SrchOn>
+        <RootTable
+          Filter="select distinct o.ea_guid as CLASSGUID,o.Object_Type as CLASSTYPE,o.Name as Name, o.Stereotype,&#xA;package.name as PackageName ,package_p1.name as PackageLevel1,package_p2.name as PackageLevel2 ,package_p3.name as PackageLevel3, o.Author as Author &#xA;from ((((((((((((((((( t_object o&#xA;left join t_diagramobjects dob on dob.[Object_ID] = o.[Object_ID])&#xA;left join t_object inst on inst.[Classifier] = o.[Object_ID])&#xA;left join t_objectproperties otv on otv.VALUE = o.[ea_guid])&#xA;left join t_connectortag ctv on ctv.VALUE = o.[ea_guid])&#xA;left join t_attributetag atv on atv.VALUE = o.[ea_guid])&#xA;left join t_operationtag optv on optv.VALUE = o.[ea_guid])&#xA;left join t_object u on u.Pdata1 = o.ea_guid)&#xA;left join t_connector cs on cs.Start_Object_ID = o.Object_ID)&#xA;left join t_connector ce on ce.End_Object_ID = o.Object_ID)&#xA;left join t_attribute att on att.Classifier like o.Object_ID)&#xA;left join t_operation op on op.Classifier like o.Object_ID)&#xA;left join t_operationparams opp on opp.Classifier like o.Object_ID)&#xA;left join t_object owned on owned.ParentID = o.Object_ID)&#xA;inner join t_package package on o.package_id = package.package_id) &#xA;left join t_package package_p1 on package_p1.package_id = package.parent_id) &#xA;left join t_package package_p2 on package_p2.package_id = package_p1.parent_id) &#xA;left join t_package package_p3 on package_p3.package_id = package_p2.parent_id) &#xA;where&#xA;o.Package_ID in (#Branch#)&#xA;and (o.name is null or o.Name like '#WC#&lt;Search Term&gt;#WC#')&#xA;and o.Object_Type not in ('Package')&#xA;and (o.Stereotype is null or o.Stereotype not in ('model document'))&#xA;and dob.Object_ID is null&#xA;and inst.Object_ID is null&#xA;and otv.VALUE is null&#xA;and ctv.Value is null&#xA;and atv.Value is null&#xA;and optv.Value is null&#xA;and u.Object_ID is null&#xA;and cs.Start_Object_ID is null&#xA;and ce.End_Object_ID is null&#xA;and att.Classifier is null&#xA;and op.Classifier is null&#xA;and opp.Classifier is null&#xA;and owned.Object_ID is null" Type="-1">
+          <TableName Display="Custom SQL Search" Name=""/>
+          <TableHierarchy Display="" Hierarchy=""/>
+        </RootTable>
+      </SrchOn>
+      <LnksTo/>
+      </Search>
+    </ModelSearches>
 </MDG.Technology>
